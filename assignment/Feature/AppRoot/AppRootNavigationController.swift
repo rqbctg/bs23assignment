@@ -18,7 +18,9 @@ class AppRootNavigationController: UINavigationController {
     
     static func getSearchViewController()->SearchViewController{
         
-        return SearchViewController()
+        let viewModel = SearchViewModel()
+        
+        return SearchViewController(with: viewModel)
         
     }
     
