@@ -2,7 +2,7 @@
 //  DataParser.swift
 //  assignment
 //
-//  Created by Miaki Limited on 2/16/24.
+//  Created by Raqeeb on 2/16/24.
 //
 
 import Foundation

@@ -56,11 +56,11 @@ extension Router {
         
         guard let baseURL else { return nil}
         
-        guard var components = URLComponents(url: baseURL, resolvingAgainstBaseURL: true) else {
-            return nil
-        }
-        
+        var components = URLComponents()
+        components.scheme = "https"
+        components.host = base
         components.path = "\(commonPath)\(path)"
+        
         components.queryItems = params?.sorted(by: { $0.0 < $1.0 }).map { URLQueryItem(name: $0, value: $1) }
         
         guard let url = components.url else {
@@ -71,6 +71,8 @@ extension Router {
             return baseURL
         }
         
+        
+        
         return url
     }
     
@@ -80,6 +82,9 @@ extension Router {
         urlRequest.httpMethod = method.rawValue
         urlRequest.timeoutInterval = 30
         headers?.forEach({ urlRequest.addValue($1, forHTTPHeaderField: $0) })
+        if let cachePolicy = self.cachePolicy{
+            urlRequest.cachePolicy = cachePolicy
+        }
         return urlRequest
     }
 }
