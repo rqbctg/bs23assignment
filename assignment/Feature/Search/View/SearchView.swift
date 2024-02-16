@@ -52,12 +52,13 @@ class SearchView: UIView {
     }()
     
     
-    let viewModel: SearchViewModelProtocol
+    var viewModel: SearchViewModelProtocol
     
     init(with: SearchViewModelProtocol){
         self.viewModel = with
         super.init(frame: .zero)
         self.addView()
+        self.setupCollectionView()
         
     }
     
@@ -75,7 +76,6 @@ class SearchView: UIView {
         activityView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         activityView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
     }
-    
     
     private func searchCVLayout()->UICollectionViewCompositionalLayout {
         let layout = UICollectionViewCompositionalLayout { section, env in
@@ -96,6 +96,16 @@ class SearchView: UIView {
             return section
         }
         return layout
+    }
+    
+    private func setupCollectionView(){
+        viewModel.searchDataSource = UICollectionViewDiffableDataSource(collectionView: self.collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchCollectionViewCell.identifier, for: indexPath) as! SearchCollectionViewCell
+            cell.configureSearchCVCell(identifier: itemIdentifier)
+            return cell
+        })
+        
+        
     }
     
 }

@@ -51,8 +51,3 @@ class SearchViewModel: SearchViewModelProtocol{
     }
 
 }
-
-
-
-
-

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class SearchCollectionViewCell: UICollectionViewCell {
     lazy var imageView : UIImageView = {
@@ -38,6 +39,13 @@ class SearchCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         addSubview(imageView)
         addSubview(lblTitle)
+        addSubview(lblDescription)
+        
+        imageView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        imageView.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        
+    
         
     
         
@@ -48,6 +56,10 @@ class SearchCollectionViewCell: UICollectionViewCell {
     }
     
     func configureSearchCVCell(identifier: SearchMovie){
+        
+        lblTitle.text = identifier.title
+        
+        imageView.sd_setImage(with: identifier.posterPath?.mediaURL,placeholderImage: UIImage(named: "tv"))
         
         
         
