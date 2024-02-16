@@ -12,16 +12,14 @@ import Combine
 
 protocol SearchViewModelProtocol {
     func getSearchMovie(query: String)
-    var searchDataSource: UICollectionViewDiffableDataSource<SearchSection,SearchModel>? { get set }
+    var searchDataSource: UICollectionViewDiffableDataSource<SearchSection,SearchMovie>? { get set }
     
 }
 
 
 
 class SearchViewModel: SearchViewModelProtocol{
-    var searchDataSource: UICollectionViewDiffableDataSource<SearchSection, SearchModel>?
-    
-    
+    var searchDataSource: UICollectionViewDiffableDataSource<SearchSection, SearchMovie>?
     
     let apiService: SearchApiService
     
@@ -43,13 +41,13 @@ class SearchViewModel: SearchViewModelProtocol{
         }
     }
     
-    private func applySnapshot(models: [SearchModel]){
+    private func applySnapshot(models: [SearchMovie]){
         if models.count <= 0 { return }
         
-        
-        
-        
-        
+        var snapshot = NSDiffableDataSourceSnapshot<SearchSection,SearchMovie>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(models, toSection: .main)
+        self.searchDataSource?.apply(snapshot,animatingDifferences: false)
     }
 
 }

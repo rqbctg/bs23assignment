@@ -34,6 +34,10 @@ class SearchView: UIView {
             bottom: 16,
             right: 0
         )
+        collectionView.register(
+            SearchCollectionViewCell.self,
+            forCellWithReuseIdentifier: SearchCollectionViewCell.identifier
+        )
         return collectionView
     }()
     

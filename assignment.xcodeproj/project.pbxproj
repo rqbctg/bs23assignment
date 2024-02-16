@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2902ED494427F173396BF489 /* Pods_assignment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42B0D01F3A53D74ECC8F7AFC /* Pods_assignment.framework */; };
+		88B40E792B7F9B300057EC50 /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B40E782B7F9B300057EC50 /* SearchCollectionViewCell.swift */; };
+		88B40E7C2B7F9C120057EC50 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B40E7B2B7F9C120057EC50 /* Extension.swift */; };
 		88F9BB942B7F2CBF00C7685F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9BB932B7F2CBF00C7685F /* AppDelegate.swift */; };
 		88F9BB962B7F2CBF00C7685F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9BB952B7F2CBF00C7685F /* SceneDelegate.swift */; };
 		88F9BB9D2B7F2CC100C7685F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88F9BB9C2B7F2CC100C7685F /* Assets.xcassets */; };
@@ -28,6 +30,8 @@
 
 /* Begin PBXFileReference section */
 		42B0D01F3A53D74ECC8F7AFC /* Pods_assignment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_assignment.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		88B40E782B7F9B300057EC50 /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
+		88B40E7B2B7F9C120057EC50 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		88F9BB902B7F2CBF00C7685F /* assignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = assignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88F9BB932B7F2CBF00C7685F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		88F9BB952B7F2CBF00C7685F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +75,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		88B40E7A2B7F9BFD0057EC50 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				88B40E7B2B7F9C120057EC50 /* Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		88F9BB872B7F2CBF00C7685F = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +106,7 @@
 			children = (
 				88F9BBA72B7F313300C7685F /* Network */,
 				88F9BBB22B7F68EE00C7685F /* Feature */,
+				88B40E7A2B7F9BFD0057EC50 /* Extension */,
 				88F9BB932B7F2CBF00C7685F /* AppDelegate.swift */,
 				88F9BB952B7F2CBF00C7685F /* SceneDelegate.swift */,
 				88F9BB9C2B7F2CC100C7685F /* Assets.xcassets */,
@@ -172,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				88F9BBC02B7F7D4900C7685F /* SearchView.swift */,
+				88B40E782B7F9B300057EC50 /* SearchCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -312,8 +326,10 @@
 				88F9BBAC2B7F313300C7685F /* RequestManager.swift in Sources */,
 				88F9BBBC2B7F757A00C7685F /* SearchViewController.swift in Sources */,
 				88F9BBAB2B7F313300C7685F /* ApiManager.swift in Sources */,
+				88B40E792B7F9B300057EC50 /* SearchCollectionViewCell.swift in Sources */,
 				88F9BBAD2B7F313300C7685F /* Router.swift in Sources */,
 				88F9BBC32B7F7F5300C7685F /* SearchResponse.swift in Sources */,
+				88B40E7C2B7F9C120057EC50 /* Extension.swift in Sources */,
 				88F9BBBE2B7F7C9700C7685F /* SearchViewModel.swift in Sources */,
 				88F9BBCA2B7F8A6500C7685F /* SearchApiService.swift in Sources */,
 				88F9BBB12B7F353800C7685F /* DataParser.swift in Sources */,
