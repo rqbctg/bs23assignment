@@ -12,11 +12,11 @@ enum SearchRouter: Router {
     case search(_ query: String)
     
     var base: String {
-        return "api.themoviedb.org"
+        return APIConstants.host
     }
     
     var path: String {
-        return "movie"
+        return "/movie"
     }
     
     var commonPath: String{

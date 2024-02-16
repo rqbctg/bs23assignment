@@ -21,7 +21,8 @@ struct SearchResponse: Codable {
 }
 
 // MARK: - Result
-struct SearchModel: Codable {
+struct SearchModel: Codable,Hashable{
+    
     let adult: Bool?
     let backdropPath: String?
     let genreIDS: [Int]?

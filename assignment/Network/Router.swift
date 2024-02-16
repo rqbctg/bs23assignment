@@ -70,9 +70,7 @@ extension Router {
         if components.path.isEmpty && components.queryItems?.count ?? 0 == 0  {
             return baseURL
         }
-        
-        
-        
+    
         return url
     }
     
