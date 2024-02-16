@@ -20,18 +20,19 @@ class SearchCollectionViewCell: UICollectionViewCell {
     lazy var lblTitle : UILabel = {
         let lbl = UILabel()
         lbl.translatesAutoresizingMaskIntoConstraints = false
-        lbl.numberOfLines = 1
+        lbl.numberOfLines = 0
         lbl.font = UIFont.systemFont(ofSize: 14)
-        lbl.textAlignment = .center
+        lbl.textAlignment = .left
         return lbl
     }()
     
     lazy var lblDescription : UILabel = {
         let lbl = UILabel()
         lbl.translatesAutoresizingMaskIntoConstraints = false
-        lbl.numberOfLines = 1
+        lbl.numberOfLines = 0
         lbl.font = UIFont.systemFont(ofSize: 12)
-        lbl.textAlignment = .center
+        lbl.textAlignment = .left
+        lbl.contentMode = .top
         return lbl
     }()
     
@@ -41,14 +42,22 @@ class SearchCollectionViewCell: UICollectionViewCell {
         addSubview(lblTitle)
         addSubview(lblDescription)
         
-        imageView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        imageView.leadingAnchor.constraint(equalTo: leadingAnchor,constant: 16).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: 60).isActive = true
         imageView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        imageView.topAnchor.constraint(equalTo: topAnchor,constant: 16).isActive = true
         
-    
         
-    
+        lblTitle.leadingAnchor.constraint(equalTo: imageView.trailingAnchor,constant: 8).isActive = true
+        lblTitle.trailingAnchor.constraint(equalTo: self.trailingAnchor,constant: -8).isActive = true
+        lblTitle.topAnchor.constraint(equalTo: imageView.topAnchor,constant: 0).isActive = true
         
+        lblDescription.leadingAnchor.constraint(equalTo: imageView.trailingAnchor,constant: 8).isActive = true
+        lblDescription.trailingAnchor.constraint(equalTo: self.trailingAnchor,constant: -8).isActive = true 
+        lblDescription.topAnchor.constraint(equalTo: lblTitle.bottomAnchor,constant: 8).isActive = true
+        lblDescription.bottomAnchor.constraint(equalTo: self.bottomAnchor,constant: -8).isActive = true
+        imageView.bottomAnchor.constraint(equalTo: self.lblDescription.bottomAnchor, constant: 0).isActive = true
+   
     }
     
     required init?(coder: NSCoder) {
@@ -59,7 +68,9 @@ class SearchCollectionViewCell: UICollectionViewCell {
         
         lblTitle.text = identifier.title
         
-        imageView.sd_setImage(with: identifier.posterPath?.mediaURL,placeholderImage: UIImage(named: "tv"))
+        lblDescription.text = identifier.overview
+        
+        imageView.sd_setImage(with: identifier.posterPath?.mediaURL,placeholderImage: UIImage(systemName: "nosign"))
         
         
         
