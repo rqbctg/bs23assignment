@@ -20,6 +20,7 @@
 		88F9BBBC2B7F757A00C7685F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9BBBB2B7F757A00C7685F /* SearchViewController.swift */; };
 		88F9BBBE2B7F7C9700C7685F /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9BBBD2B7F7C9700C7685F /* SearchViewModel.swift */; };
 		88F9BBC12B7F7D4900C7685F /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9BBC02B7F7D4900C7685F /* SearchView.swift */; };
+		88F9BBC32B7F7F5300C7685F /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9BBC22B7F7F5300C7685F /* SearchResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		88F9BBBB2B7F757A00C7685F /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		88F9BBBD2B7F7C9700C7685F /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		88F9BBC02B7F7D4900C7685F /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		88F9BBC22B7F7F5300C7685F /* SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
 		BCFA8416AEFD2B580FF60912 /* Pods-assignment.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-assignment.debug.xcconfig"; path = "Target Support Files/Pods-assignment/Pods-assignment.debug.xcconfig"; sourceTree = "<group>"; };
 		C84702C17F1A5F89DCA3B879 /* Pods-assignment.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-assignment.release.xcconfig"; path = "Target Support Files/Pods-assignment/Pods-assignment.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -145,6 +147,7 @@
 		88F9BBB92B7F752C00C7685F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				88F9BBC22B7F7F5300C7685F /* SearchResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 				88F9BBBC2B7F757A00C7685F /* SearchViewController.swift in Sources */,
 				88F9BBAB2B7F313300C7685F /* ApiManager.swift in Sources */,
 				88F9BBAD2B7F313300C7685F /* Router.swift in Sources */,
+				88F9BBC32B7F7F5300C7685F /* SearchResponse.swift in Sources */,
 				88F9BBBE2B7F7C9700C7685F /* SearchViewModel.swift in Sources */,
 				88F9BBB12B7F353800C7685F /* DataParser.swift in Sources */,
 				88F9BB962B7F2CBF00C7685F /* SceneDelegate.swift in Sources */,
