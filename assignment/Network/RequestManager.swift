@@ -15,7 +15,7 @@ enum NetworkError : Error {
     case httpResponseNotFound
     case decodingError
     case error(error: Error?)
-    case urlResuestNotFound
+    case urlRequestNotFound
     case invalidServerResponse
 }
 
@@ -37,7 +37,7 @@ final class RequestManager: RequestManagerProtocol{
     func performRequest<T>(router: Router,completion:@escaping(Result<T, NetworkError>) -> Void) where T : Decodable, T : Encodable {
         
         guard let request = router.urlRequest else {
-            completion(.failure(.urlResuestNotFound))
+            completion(.failure(.urlRequestNotFound))
             return
         }
         

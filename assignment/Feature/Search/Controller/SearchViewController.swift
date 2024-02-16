@@ -34,6 +34,8 @@ class SearchViewController: UIViewController {
         
         self.title = "Search"
         self.view.backgroundColor = .red
+        
+        self.viewModel.getSearchMovie(query: "marvel")
     }
     
 }

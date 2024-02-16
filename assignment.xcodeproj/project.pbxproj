@@ -23,6 +23,7 @@
 		88F9BBC32B7F7F5300C7685F /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9BBC22B7F7F5300C7685F /* SearchResponse.swift */; };
 		88F9BBC62B7F802C00C7685F /* SearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9BBC52B7F802C00C7685F /* SearchRouter.swift */; };
 		88F9BBC82B7F834C00C7685F /* APIConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9BBC72B7F834C00C7685F /* APIConstant.swift */; };
+		88F9BBCA2B7F8A6500C7685F /* SearchApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9BBC92B7F8A6500C7685F /* SearchApiService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		88F9BBC22B7F7F5300C7685F /* SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
 		88F9BBC52B7F802C00C7685F /* SearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouter.swift; sourceTree = "<group>"; };
 		88F9BBC72B7F834C00C7685F /* APIConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstant.swift; sourceTree = "<group>"; };
+		88F9BBC92B7F8A6500C7685F /* SearchApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchApiService.swift; sourceTree = "<group>"; };
 		BCFA8416AEFD2B580FF60912 /* Pods-assignment.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-assignment.debug.xcconfig"; path = "Target Support Files/Pods-assignment/Pods-assignment.debug.xcconfig"; sourceTree = "<group>"; };
 		C84702C17F1A5F89DCA3B879 /* Pods-assignment.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-assignment.release.xcconfig"; path = "Target Support Files/Pods-assignment/Pods-assignment.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -178,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				88F9BBC52B7F802C00C7685F /* SearchRouter.swift */,
+				88F9BBC92B7F8A6500C7685F /* SearchApiService.swift */,
 			);
 			path = dependecy;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 				88F9BBAD2B7F313300C7685F /* Router.swift in Sources */,
 				88F9BBC32B7F7F5300C7685F /* SearchResponse.swift in Sources */,
 				88F9BBBE2B7F7C9700C7685F /* SearchViewModel.swift in Sources */,
+				88F9BBCA2B7F8A6500C7685F /* SearchApiService.swift in Sources */,
 				88F9BBB12B7F353800C7685F /* DataParser.swift in Sources */,
 				88F9BBC82B7F834C00C7685F /* APIConstant.swift in Sources */,
 				88F9BB962B7F2CBF00C7685F /* SceneDelegate.swift in Sources */,

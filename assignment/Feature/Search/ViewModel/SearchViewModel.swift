@@ -9,26 +9,46 @@ import Foundation
 
 protocol SearchViewModelProtocol {
     
-    func fetchSerachData(query: String)
+    func getSearchMovie(query: String)
     
 }
 
 class SearchViewModel: SearchViewModelProtocol{
-    func fetchSerachData(query: String) {
+   
+    
+    
+    let apiService: SearchApiService
+    
+    init(apiService: SearchApiService = RequestManager()){
+        self.apiService = apiService
         
     }
     
-    
-    let requestManager: RequestManagerProtocol
-    
-    init(requestManager: RequestManagerProtocol = RequestManager()){
-        self.requestManager = requestManager
+    func getSearchMovie(query: String) {
         
-        
+        self.apiService.searchMovie(query: query) { result in
+            
+            switch result {
+                
+            case let .success(searchResponse):
+                
+                print(searchResponse)
+                
+            case let .failure(error):
+                print(error.localizedDescription)
+                
+                
+            }
+            
+            
+        }
+       
         
     }
-    
-    
-    
 
 }
+
+
+
+
+
