@@ -11,18 +11,11 @@ class AppRootNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
-        
+        self.navigationBar.prefersLargeTitles = true
     }
     
     static func getSearchViewController()->SearchViewController{
-        
-        let viewModel = SearchViewModel()
-        
-        return SearchViewController(with: viewModel)
-        
+        return SearchViewController()
     }
-    
-
 }

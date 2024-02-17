@@ -9,6 +9,30 @@ import UIKit
 import SDWebImage
 
 class SearchCollectionViewCell: UICollectionViewCell {
+    
+    lazy var containerStackView: UIStackView = {
+        let stack = UIStackView()
+        stack.distribution = .fill
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.axis = .horizontal
+        return stack
+    }()
+    
+    lazy var infoStackView: UIStackView = {
+        let stack = UIStackView()
+        stack.distribution = .fill
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.axis = .vertical
+        return stack
+    }()
+
+    lazy var imageContainerView : UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.clipsToBounds = true
+        return view
+    }()
+    
     lazy var imageView : UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -23,6 +47,7 @@ class SearchCollectionViewCell: UICollectionViewCell {
         lbl.numberOfLines = 0
         lbl.font = UIFont.systemFont(ofSize: 14)
         lbl.textAlignment = .left
+        lbl.setContentHuggingPriority(.defaultHigh, for: .vertical)
         return lbl
     }()
     
@@ -31,33 +56,64 @@ class SearchCollectionViewCell: UICollectionViewCell {
         lbl.translatesAutoresizingMaskIntoConstraints = false
         lbl.numberOfLines = 0
         lbl.font = UIFont.systemFont(ofSize: 12)
-        lbl.textAlignment = .left
         lbl.contentMode = .top
+        lbl.setContentHuggingPriority(.defaultHigh, for: .vertical)
         return lbl
+    }()
+    
+    lazy var lblContentCompression : UILabel = {
+        let lbl = UILabel()
+        lbl.translatesAutoresizingMaskIntoConstraints = false
+        lbl.setContentHuggingPriority(.defaultLow, for: .vertical)
+        lbl.font = UIFont.systemFont(ofSize: 1)
+        lbl.numberOfLines = 0
+        return lbl
+    }()
+    
+    lazy var topSeparatorView : UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .systemGray
+        return view
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(imageView)
-        addSubview(lblTitle)
-        addSubview(lblDescription)
+        self.addView()
+    }
+    
+    private func addView(){
         
-        imageView.leadingAnchor.constraint(equalTo: leadingAnchor,constant: 16).isActive = true
+        addSubview(topSeparatorView)
+        addSubview(containerStackView)
+        
+        topSeparatorView.heightAnchor.constraint(equalToConstant: 0.5).isActive = true
+        topSeparatorView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        topSeparatorView.leadingAnchor.constraint(equalTo: leadingAnchor,constant: 16).isActive = true
+        topSeparatorView.trailingAnchor.constraint(equalTo: trailingAnchor,constant: -16).isActive = true
+        
+        containerStackView.topAnchor.constraint(equalTo: topSeparatorView.bottomAnchor,constant: 8).isActive = true
+        containerStackView.bottomAnchor.constraint(equalTo: bottomAnchor,constant: 0).isActive = true
+        containerStackView.leadingAnchor.constraint(equalTo: leadingAnchor,constant: 16).isActive = true
+        containerStackView.trailingAnchor.constraint(equalTo: trailingAnchor,constant: -16).isActive = true
+    
+        containerStackView.addArrangedSubview(imageContainerView)
+        imageContainerView.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        containerStackView.setCustomSpacing(8, after: imageContainerView)
+        
+        imageContainerView.addSubview(imageView)
+        
+        imageView.centerYAnchor.constraint(equalTo: imageContainerView.centerYAnchor).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: 60).isActive = true
         imageView.heightAnchor.constraint(equalToConstant: 100).isActive = true
-        imageView.topAnchor.constraint(equalTo: topAnchor,constant: 16).isActive = true
         
-        
-        lblTitle.leadingAnchor.constraint(equalTo: imageView.trailingAnchor,constant: 8).isActive = true
-        lblTitle.trailingAnchor.constraint(equalTo: self.trailingAnchor,constant: -8).isActive = true
-        lblTitle.topAnchor.constraint(equalTo: imageView.topAnchor,constant: 0).isActive = true
-        
-        lblDescription.leadingAnchor.constraint(equalTo: imageView.trailingAnchor,constant: 8).isActive = true
-        lblDescription.trailingAnchor.constraint(equalTo: self.trailingAnchor,constant: -8).isActive = true 
-        lblDescription.topAnchor.constraint(equalTo: lblTitle.bottomAnchor,constant: 8).isActive = true
-        lblDescription.bottomAnchor.constraint(equalTo: self.bottomAnchor,constant: -8).isActive = true
-        imageView.bottomAnchor.constraint(equalTo: self.lblDescription.bottomAnchor, constant: 0).isActive = true
-   
+        containerStackView.addArrangedSubview(infoStackView)
+        infoStackView.addArrangedSubview(lblTitle)
+        infoStackView.setCustomSpacing(8, after: lblTitle)
+        infoStackView.addArrangedSubview(lblDescription)
+        infoStackView.addArrangedSubview(lblContentCompression)
+        infoStackView.heightAnchor.constraint(greaterThanOrEqualToConstant: 100).isActive = true
+       
     }
     
     required init?(coder: NSCoder) {
@@ -71,10 +127,5 @@ class SearchCollectionViewCell: UICollectionViewCell {
         lblDescription.text = identifier.overview
         
         imageView.sd_setImage(with: identifier.posterPath?.mediaURL,placeholderImage: UIImage(systemName: "nosign"))
-        
-        
-        
-        
     }
-    
 }

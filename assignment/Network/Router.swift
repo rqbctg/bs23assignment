@@ -44,10 +44,6 @@ protocol Router {
 
 extension Router {
     
-    var cachePolicy: URLRequest.CachePolicy{
-        return .reloadRevalidatingCacheData
-    }
-    
     var baseURL: URL? {
         return URL(string: self.base)
     }

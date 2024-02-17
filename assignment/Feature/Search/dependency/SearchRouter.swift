@@ -22,6 +22,7 @@ enum SearchRouter: Router {
     var commonPath: String{
         return "/3/search"
     }
+    
     var params: Dictionary<String, String>? {
         switch self {
         case let .search(query):
@@ -46,6 +47,6 @@ enum SearchRouter: Router {
     }
     
     var cachePolicy: URLRequest.CachePolicy? {
-        return nil
+        return .reloadRevalidatingCacheData
     }
 }

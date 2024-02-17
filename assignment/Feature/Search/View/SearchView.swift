@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 enum SearchViewState {
     case loading
@@ -13,10 +14,12 @@ enum SearchViewState {
 }
 
 enum SearchSection {
-    case main 
+    case main
 }
 
 class SearchView: UIView {
+    
+    var searchDataSource: UICollectionViewDiffableDataSource<SearchSection,SearchMovie>?
     
     lazy var collectionView : UICollectionView = {
         let collectionView = UICollectionView(
@@ -51,6 +54,14 @@ class SearchView: UIView {
         
     }()
     
+    lazy var searchController: UISearchController = {
+        let searchController = UISearchController(searchResultsController: UIViewController())
+        searchController.searchBar.placeholder = "Enter a movie name"
+        searchController.obscuresBackgroundDuringPresentation = false
+        return searchController
+    }()
+    
+    var cancelable = Set<AnyCancellable>()
     
     var viewModel: SearchViewModelProtocol
     
@@ -59,7 +70,7 @@ class SearchView: UIView {
         super.init(frame: .zero)
         self.addView()
         self.setupCollectionView()
-        
+        self.bindViewModel()
     }
     
     required init?(coder: NSCoder) {
@@ -80,16 +91,16 @@ class SearchView: UIView {
     private func searchCVLayout()->UICollectionViewCompositionalLayout {
         let layout = UICollectionViewCompositionalLayout { section, env in
             
-            
             let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(100))
             
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
             
             let groupLayoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(100))
             let group = NSCollectionLayoutGroup.vertical(layoutSize: groupLayoutSize, subitems: [item])
-            group.interItemSpacing = .fixed(6)
+            group.interItemSpacing = .fixed(12)
             
             let section = NSCollectionLayoutSection(group: group)
+            section.interGroupSpacing = 12
             
             section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 6, bottom: 16, trailing: 6)
             
@@ -99,7 +110,7 @@ class SearchView: UIView {
     }
     
     private func setupCollectionView(){
-        viewModel.searchDataSource = UICollectionViewDiffableDataSource(collectionView: self.collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
+        searchDataSource = UICollectionViewDiffableDataSource(collectionView: self.collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchCollectionViewCell.identifier, for: indexPath) as! SearchCollectionViewCell
             cell.configureSearchCVCell(identifier: itemIdentifier)
             return cell
@@ -108,4 +119,34 @@ class SearchView: UIView {
         
     }
     
+    private func bindViewModel(){
+        
+        self.viewModel.viewState
+            .receive(on: DispatchQueue.main)
+            .sink {[weak self] state in
+                if case .normal  = state {
+                    self?.activityView.stopAnimating()
+                }else{
+                    self?.activityView.startAnimating()
+                }
+            }
+            .store(in: &cancelable)
+        
+        self.viewModel.searchModels
+            .receive(on: DispatchQueue.main)
+            .sink {[weak self] models in
+                self?.applySnapshot(models: models)
+            }
+            .store(in: &cancelable)
+        
+    }
+    
+    private func applySnapshot(models: [SearchMovie]){
+        if models.count <= 0 { return }
+        
+        var snapshot = NSDiffableDataSourceSnapshot<SearchSection,SearchMovie>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(models, toSection: .main)
+        self.searchDataSource?.apply(snapshot,animatingDifferences: false)
+    }
 }

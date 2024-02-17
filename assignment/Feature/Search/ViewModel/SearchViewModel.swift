@@ -5,22 +5,24 @@
 //  Created by Raqeeb on 2/16/24.
 //
 
-import UIKit
+import Foundation
 import Combine
-
-
 
 protocol SearchViewModelProtocol {
     func getSearchMovie(query: String)
-    var searchDataSource: UICollectionViewDiffableDataSource<SearchSection,SearchMovie>? { get set }
-    
+    var viewState: AnyPublisher<SearchViewState,Never> { get }
+    var searchModels: AnyPublisher<[SearchMovie],Never> { get }
 }
 
-
-
 class SearchViewModel: SearchViewModelProtocol{
-    var searchDataSource: UICollectionViewDiffableDataSource<SearchSection, SearchMovie>?
-    
+    var searchModels: AnyPublisher<[SearchMovie], Never>{
+        self._searchModels.eraseToAnyPublisher()
+    }
+    var viewState: AnyPublisher<SearchViewState,Never>{
+        self._viewState.eraseToAnyPublisher()
+    }
+    private var _viewState = CurrentValueSubject<SearchViewState,Never>(.normal)
+    private var _searchModels = CurrentValueSubject<[SearchMovie],Never>([])
     let apiService: SearchApiService
     
     init(apiService: SearchApiService = RequestManager()){
@@ -29,25 +31,15 @@ class SearchViewModel: SearchViewModelProtocol{
     }
     
     func getSearchMovie(query: String) {
+        self._viewState.send(.loading)
         self.apiService.searchMovie(query: query) { result in
             switch result {
             case let .success(searchResponse):
-                
-                self.applySnapshot(models: searchResponse.results ?? [])
-                
+                self._viewState.send(.normal)
+                self._searchModels.send(searchResponse.results ?? [])
             case let .failure(error):
                 print(error.localizedDescription)
             }
         }
     }
-    
-    private func applySnapshot(models: [SearchMovie]){
-        if models.count <= 0 { return }
-        
-        var snapshot = NSDiffableDataSourceSnapshot<SearchSection,SearchMovie>()
-        snapshot.appendSections([.main])
-        snapshot.appendItems(models, toSection: .main)
-        self.searchDataSource?.apply(snapshot,animatingDifferences: false)
-    }
-
 }
